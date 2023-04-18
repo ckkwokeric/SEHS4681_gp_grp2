@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
 
@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
     }
 
@@ -42,4 +42,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
         }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
+}
