@@ -2,6 +2,7 @@ package com.example.sehs4681_gp_grp2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -39,6 +40,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
             case R.id.scoreboard:
                 getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, scoreboardFragment).commit();
                 return true;
+
+            case R.id.logout:
+                MainActivity();
+                return true;
         }
         return false;
         }
@@ -46,5 +51,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
         super.onPointerCaptureChanged(hasCapture);
+    }
+
+    public void MainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
