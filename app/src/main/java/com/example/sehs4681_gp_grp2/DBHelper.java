@@ -18,12 +18,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table users(uid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)");
+        db.execSQL("create table users(uid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, score INTEGER DEFAULT 0)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("drop table if exists users");
+        onCreate(db);
     }
 
     public Boolean insertData(String username, String password){
@@ -64,4 +65,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor readAllData() {
+        String query = "Select * from users";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
 }

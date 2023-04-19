@@ -5,12 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ScoreboardFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Scoreboard Fragment"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textSize="20dp"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>
