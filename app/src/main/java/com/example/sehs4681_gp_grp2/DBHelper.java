@@ -66,7 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor readAllData() {
-        String query = "Select * from users";
+        String query = "Select * from users order by score Desc";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -75,4 +75,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+
 }
