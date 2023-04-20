@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+        <ImageView
+            android:id="@+id/question_mark_1a"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_1b"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_1c"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_1d"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+        <ImageView
+            android:id="@+id/question_mark_2a"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_2b"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_2c"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_2d"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+        <ImageView
+            android:id="@+id/question_mark_3a"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_3b"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_3c"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/question_mark_3d"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/image_question_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
