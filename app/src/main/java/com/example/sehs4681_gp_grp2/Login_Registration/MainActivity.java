@@ -1,4 +1,4 @@
-package com.example.sehs4681_gp_grp2;
+package com.example.sehs4681_gp_grp2.Login_Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.sehs4681_gp_grp2.DBHelper;
+import com.example.sehs4681_gp_grp2.HomeActivity;
+import com.example.sehs4681_gp_grp2.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
