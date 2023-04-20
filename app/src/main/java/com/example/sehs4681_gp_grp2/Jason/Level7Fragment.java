@@ -151,11 +151,4 @@ public class Level7Fragment extends Fragment implements SensorEventListener, Vie
         fragmentTransaction.commit();
     }
 
-//    @Override
-//    public void onClick(View view) {
-//        // Start Next Activity after the animation has played
-//        Intent intent = new Intent(JasonGame1.this, JasonGame2.class);
-//        startActivity(intent);
-//        finish(); // Optional: finish MainActivity to remove it from the back stack
-//    }
 }

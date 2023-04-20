@@ -5,10 +5,46 @@
     android:layout_height="match_parent"
     tools:context=".Jason.Level8Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_blank_fragment8" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/question_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please connect the closest blue to green."
+            android:textSize="24sp"
+            android:layout_marginTop="32dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true" />
+
+        <com.example.sehs4681_gp_grp2.Jason.CustomGameView
+            android:id="@+id/customGameView"
+            android:layout_below="@id/question_text2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/gameStatusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@android:color/black"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_next2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="224dp"
+            android:layout_below="@id/gameStatusTextView"
+            android:visibility="gone"
+            android:text="Next Level" />
+
+    </RelativeLayout>
 
 </FrameLayout>
