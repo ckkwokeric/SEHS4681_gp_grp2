@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="hangman_Primary">#FFF8E0</color>
+    <color name="hangman_PrimaryDark">#FFF3CC</color>
+    <color name="hangman_Accent">#F7F7F7</color>
+    <color name="hangman_Secondary">#D7CCC8</color>
 </resources>

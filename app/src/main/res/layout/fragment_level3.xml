@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Eric.Level3Fragment">
+    tools:context=".Eric.Level3Fragment"
+    android:layout_marginBottom="@dimen/bottom_nav_min_height">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="hello_blank_fragment3" />
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@color/hangman_Primary">
 
-</FrameLayout>
+        <TextView
+            android:textStyle="bold|italic"
+            android:textSize="@dimen/txtTitle"
+            android:id="@+id/tv_Heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Hangman"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@color/hangman_PrimaryDark">
+
+        <TextView
+
+            android:textSize="@dimen/txtWordToBeGuessed"
+            android:id="@+id/tv_txtWordToBeGuessed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Word To Be Guessed" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@color/hangman_Primary">
+
+        <EditText
+            android:maxLength="1"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:textSize="@dimen/etInput"
+            android:id="@+id/et_Input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Input one letter"
+            android:inputType="textPersonName" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@color/hangman_PrimaryDark">
+
+        <TextView
+            android:textSize="@dimen/txtLettersTried"
+            android:gravity="center"
+            android:id="@+id/tv_txtLettersTried"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Letter tried" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@color/hangman_Primary">
+
+        <TextView
+            android:textSize="@dimen/txtTriesLeft"
+            android:id="@+id/tv_txtTriesLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X X X X X"
+            android:gravity="center"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:background="@color/hangman_PrimaryDark">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_Reset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/hangman_Accent"
+            android:textColor="@color/hangman_Secondary"
+            android:text="Reset"
+            android:textSize="@dimen/btnReset" />
+    </TableRow>
+
+</TableLayout>
