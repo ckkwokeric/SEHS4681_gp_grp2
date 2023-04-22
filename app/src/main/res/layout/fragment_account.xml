@@ -14,4 +14,10 @@
         android:gravity="center"
         android:textSize="20dp"/>
 
+    <Button
+        android:id="@+id/add_score_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add 50" />
+
 </RelativeLayout>

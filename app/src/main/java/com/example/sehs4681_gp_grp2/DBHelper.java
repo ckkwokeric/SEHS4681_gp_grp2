@@ -1,16 +1,23 @@
 package com.example.sehs4681_gp_grp2;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DBName = "gp.db";
+    private static final String TABLE_NAME = "users";
+    private static final String COLUMN_ID = "uid";
+    private static final String COLUMN_USERNAME = "username";
+    private static final String COLUMN_PASSWORD = "username";
+    private static final String COLUMN_SCORE = "score";
 
     public DBHelper(Context context) {
         super(context, "gp.db", null, 1);
@@ -18,7 +25,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table users(uid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, score INTEGER DEFAULT 0)");
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_USERNAME + " TEXT, " +
+                COLUMN_PASSWORD + " TEXT, " +
+                COLUMN_SCORE + " INTEGER DEFAULT 0);";
+        db.execSQL(createTable);
     }
 
     @Override
@@ -31,10 +43,10 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("username", username);
-        values.put("password", password);
+        values.put(COLUMN_USERNAME, username);
+        values.put(COLUMN_PASSWORD, password);
 
-        long result = db.insert("users", null, values);
+        long result = db.insert(TABLE_NAME, null, values);
         
         if (result == -1){
             return false;
@@ -45,7 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Boolean checkusername(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from users where username = ?", new String[] {username});
+        Cursor cursor = db.rawQuery("Select * from "+ TABLE_NAME +" where "+ COLUMN_USERNAME +" = ?", new String[] {username});
 
         if (cursor.getCount() > 0) {
             return true;
@@ -56,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Boolean checkusernamepassword(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from users where username = ? and password = ?", new String[] {username, password});
+        Cursor cursor = db.rawQuery("Select * from "+ TABLE_NAME +" where "+ COLUMN_USERNAME +" = ? and "+ COLUMN_PASSWORD +" = ?", new String[] {username, password});
 
         if (cursor.getCount() > 0) {
             return true;
@@ -66,7 +78,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor readAllData() {
-        String query = "Select * from users order by score Desc";
+        String query = "Select * from "+ TABLE_NAME +" order by "+ COLUMN_SCORE +" Desc";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
@@ -76,5 +88,33 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    @SuppressLint("Range")
+    public void addScore(int uid, int score) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // First, retrieve the current score for the user with the given uid
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(uid)});
+
+        int currentScore = 0;
+        if (cursor.moveToFirst()) {
+            currentScore = cursor.getInt(cursor.getColumnIndex(COLUMN_SCORE));
+        }
+        cursor.close();
+
+        // Next, update the user's score
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_SCORE, currentScore + score);
+
+        int rowsAffected = db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(uid)});
+
+        if (rowsAffected == 0) {
+            Log.e("DatabaseHelper", "Failed to update score for uid: " + uid);
+        } else {
+            Log.d("DatabaseHelper", "Score updated successfully for uid: " + uid);
+        }
+
+        db.close();
+    }
 
 }
