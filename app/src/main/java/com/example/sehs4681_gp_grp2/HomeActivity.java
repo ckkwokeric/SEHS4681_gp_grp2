@@ -13,9 +13,10 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, LogoutDialog.NoticeDialogListener {
 
+    public static int userUid = -1;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
-    AccountFragment accountFragment = new AccountFragment();
+    AccountFragment accountFragment = AccountFragment.newInstance(userUid);
     ScoreboardFragment scoreboardFragment = new ScoreboardFragment();
 
     @Override

@@ -44,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     int uid = DB.checkusernamepassword(user, pass);
                     if (uid != -1){
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Login Successful "+uid+" !", Toast.LENGTH_SHORT).show();
+                        HomeActivity.userUid = uid;
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//                        intent.putExtra("user_uid", uid); // Pass the user's unique ID (uid) as an extra
                         startActivity(intent);
                     } else {
                         Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

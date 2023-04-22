@@ -13,9 +13,22 @@ import android.widget.Toast;
 public class AccountFragment extends Fragment {
 
     private DBHelper dbHelper;
+    private int userUid;
 
-    public AccountFragment(){
-        // require a empty public constructor
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            userUid = getArguments().getInt("user_uid");
+        }
+    }
+
+    public static AccountFragment newInstance(int uid) {
+        AccountFragment fragment = new AccountFragment();
+        Bundle args = new Bundle();
+        args.putInt("user_uid", uid);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -28,7 +41,7 @@ public class AccountFragment extends Fragment {
         add_score_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbHelper.addScore(1,50);
+                dbHelper.addScore(userUid,50);
             }
         });
 
