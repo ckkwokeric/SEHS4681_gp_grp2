@@ -66,9 +66,6 @@ public class Level12Fragment extends Fragment implements View.OnClickListener{
             ticTacToeBoard.resetGame();
             ticTacToeBoard.invalidate();
         } else if (view.getId() == R.id.home_btn) {
-            // TODO Fix this home button so that it can really go to game select page
-//            Intent intent = new Intent(getActivity().getApplicationContext(), HomeFragment.class);
-//            startActivity(intent);
             Fragment toHomeFragment = new HomeFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flFragment, toHomeFragment).commit();
