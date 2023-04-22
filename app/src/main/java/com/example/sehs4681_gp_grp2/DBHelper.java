@@ -16,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "users";
     private static final String COLUMN_ID = "uid";
     private static final String COLUMN_USERNAME = "username";
-    private static final String COLUMN_PASSWORD = "username";
+    private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_SCORE = "score";
 
     public DBHelper(Context context) {
@@ -66,14 +66,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean checkusernamepassword(String username, String password) {
+    public int checkusernamepassword(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from "+ TABLE_NAME +" where "+ COLUMN_USERNAME +" = ? and "+ COLUMN_PASSWORD +" = ?", new String[] {username, password});
+        Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COLUMN_USERNAME + " = ? and " + COLUMN_PASSWORD + " = ?", new String[]{username, password});
 
-        if (cursor.getCount() > 0) {
-            return true;
-        }else {
-            return false;
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") int uid = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+            cursor.close();
+            return uid;
+        } else {
+            return -1;
         }
     }
 

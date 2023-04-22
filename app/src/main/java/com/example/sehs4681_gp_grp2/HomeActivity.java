@@ -14,7 +14,6 @@ import com.google.android.material.navigation.NavigationBarView;
 public class HomeActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, LogoutDialog.NoticeDialogListener {
 
     BottomNavigationView bottomNavigationView;
-
     HomeFragment homeFragment = new HomeFragment();
     AccountFragment accountFragment = new AccountFragment();
     ScoreboardFragment scoreboardFragment = new ScoreboardFragment();

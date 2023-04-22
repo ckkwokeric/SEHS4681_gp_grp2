@@ -42,10 +42,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)){
                     Toast.makeText(LoginActivity.this, "All fields Required", Toast.LENGTH_SHORT).show();
                 } else {
-                    Boolean checkuserpass = DB.checkusernamepassword(user, pass);
-                    if (checkuserpass == true){
+                    int uid = DB.checkusernamepassword(user, pass);
+                    if (uid != -1){
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                        intent.putExtra("user_uid", uid); // Pass the user's unique ID (uid) as an extra
                         startActivity(intent);
                     } else {
                         Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
