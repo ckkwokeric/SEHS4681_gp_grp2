@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Stock color -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,8 +8,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- For Level 3 - Hangman -->
     <color name="hangman_Primary">#FFF8E0</color>
     <color name="hangman_PrimaryDark">#FFF3CC</color>
     <color name="hangman_Accent">#F7F7F7</color>
     <color name="hangman_Secondary">#D7CCC8</color>
+    <!-- For Level 12 - Tic-Tac-Toe -->
+    <color name="salmon">#FF8A65</color>
+    <color name="light_blue">#4FC3F7</color>
+    <color name="light_brown">#D7CCC8</color>
+    <color name="red">#C62828</color>
+    <color name="blue">#0D47A1</color>
+    <color name="green">#4CAF50</color>
 </resources>

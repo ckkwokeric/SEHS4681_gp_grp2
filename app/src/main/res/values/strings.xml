@@ -3,8 +3,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_title">Cartoons Matching Game</string>
+    <!-- For Level 4 - Minesweeper -->
     <string name="lvl4_smiley">😃</string>
     <string name="lvl4_flag">🚩</string>
     <string name="lvl4_bomb">💣</string>
     <string name="lvl4_default_count">000</string>
+    <!-- For Level 12 - Tic-Tac-Toe -->
+    <string name="homeTitle">Tic Tac Toe</string>
+    <string name="playBtn">Play</string>
+    <string name="playerSetupTitle">Enter Your Name</string>
+    <string name="label1">Player1</string>
+    <string name="label2">Player2</string>
+    <string name="submitBtn">Submit</string>
+    <string name="nameHint">Enter Your Name</string>
+    <string name="playAgainBtn">Play Again</string>
+    <string name="homeBtn">Home</string>
 </resources>
