@@ -1,8 +1,5 @@
 package com.example.sehs4681_gp_grp2.Mark;
 
-import android.graphics.Paint;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,30 +12,9 @@ import com.example.sehs4681_gp_grp2.R;
 
 
 public class Level5Fragment extends Fragment {
-
-    private SensorManager sensorManager;
-    private Sensor accelerometer;
-    private int cellX;
-    private int cellY;
-    private int winningX = 0;
-    private int winningY = 0;
-    private boolean gameWon = false;
-    private int[][] maze = {
-            {0, 1, 0, 0, 0},
-            {0, 0, 0, 1, 0},
-            {1, 1, 1, 1, 0},
-            {0, 0, 0, 1, 0},
-            {0, 1, 0, 0, 0}
-    };
-    private Paint wallPaint;
-    private Paint playerPaint;
-
-
     public Level5Fragment() {
         // Required empty public constructor
-
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
