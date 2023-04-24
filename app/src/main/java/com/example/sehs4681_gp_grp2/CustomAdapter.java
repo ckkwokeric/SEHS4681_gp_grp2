@@ -34,7 +34,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.users_id_txt.setText(String.valueOf(users_id.get(position)));
+        holder.rankText.setText(String.valueOf(position + 1) + ".");
+//        holder.users_id_txt.setText(String.valueOf(users_id.get(position)));
         holder.users_name_txt.setText(String.valueOf(users_name.get(position)));
         holder.users_score_txt.setText(String.valueOf(users_score.get(position)));
     }
@@ -46,10 +47,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView users_id_txt, users_name_txt, users_score_txt;
+        TextView rankText, users_id_txt, users_name_txt, users_score_txt;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            users_id_txt = itemView.findViewById(R.id.user_id_txt);
+            rankText = itemView.findViewById(R.id.rank_text);
+//            users_id_txt = itemView.findViewById(R.id.user_id_txt);
             users_name_txt = itemView.findViewById(R.id.users_name_txt);
             users_score_txt = itemView.findViewById(R.id.users_score_txt);
 
