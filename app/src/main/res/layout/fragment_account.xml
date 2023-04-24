@@ -3,21 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    tools:context=".AccountFragment"
+    android:layout_marginBottom="@dimen/bottom_nav_min_height">
 
+    <ImageView
+        android:id="@+id/user_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/user_icon"
+        android:layout_centerInParent="true" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Account Fragment"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textSize="20dp"/>
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:textSize="20dp"
+        android:layout_below="@+id/user_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/user_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Score: 0"
+        android:textSize="18dp"
+        android:layout_below="@+id/user_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp" />
 
     <Button
         android:id="@+id/add_score_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add 50" />
+        android:text="Add 50"
+        android:layout_below="@+id/user_score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 
 </RelativeLayout>
