@@ -51,7 +51,7 @@ public class Level1Fragment extends Fragment implements MazeView.MazeViewListene
         winButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Your action here
+                // Go Back Home page
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 HomeFragment homeFragment = new HomeFragment();
