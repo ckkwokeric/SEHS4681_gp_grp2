@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Debby.Level10Fragment">
+    android:layout_marginBottom="@dimen/bottom_nav_min_height">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/b_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_blank_fragment10" />
+        android:layout_height="590dp"
+        android:layout_above="@+id/b_next_game"
+        android:layout_below="@+id/tv_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:background="@color/red"
+        android:text=""
+        android:textColor="#ffffff"
+        android:textColorHighlight="@color/red"
+        android:textColorLink="@color/red"
+        android:textSize="64dp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Please tap when it show PRESS!"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:textSize="24dp" />
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/b_next_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Game"
+        android:visibility="gone" />
+
+</RelativeLayout>
