@@ -17,7 +17,7 @@ import com.example.sehs4681_gp_grp2.R;
 public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
-    Button signin, goback, test;
+    Button signin, goback;
     DBHelper DB;
 
     @Override
@@ -30,8 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         signin = findViewById(R.id.bt_signin_in);
         goback = findViewById(R.id.bt_back);
         DB = new DBHelper(this);
-
-        test = findViewById(R.id.bt_test);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +57,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MainActivity();
-            }
-        });
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HomeActivity();
             }
         });
     }
