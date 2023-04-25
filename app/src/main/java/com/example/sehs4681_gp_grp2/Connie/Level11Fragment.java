@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 import java.util.Arrays;
@@ -25,6 +28,7 @@ import java.util.Collections;
 
 public class Level11Fragment extends Fragment {
 
+    private DBHelper dbHelper;
     int numMatchedPairs = 0;
     TextView tv_point;
 
@@ -43,6 +47,12 @@ public class Level11Fragment extends Fragment {
 
     public Level11Fragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -188,6 +198,7 @@ public class Level11Fragment extends Fragment {
             alertDialogBuilder.setMessage("CONGRATULATIONS!")
                     .setCancelable(false)
                     .setPositiveButton("EXIT", (dialogInterface, i) -> {
+                        dbHelper.addScore(User.getUID(),50);
                         FragmentManager fragmentManager = getParentFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         HomeFragment homeFragment = new HomeFragment();

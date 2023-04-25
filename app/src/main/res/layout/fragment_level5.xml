@@ -15,7 +15,7 @@
         tools:context=".MainActivity">
 
         <com.example.sehs4681_gp_grp2.Mark.MazeView_Mark
-            android:id="@+id/mazeView"
+            android:id="@+id/maze_view_mark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

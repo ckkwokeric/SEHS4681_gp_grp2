@@ -15,13 +15,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sehs4681_gp_grp2.Connie.L12GameClass.TicTacToeBoard;
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeActivity;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 
 public class Level12Fragment extends Fragment implements View.OnClickListener{
 
+    private DBHelper dbHelper;
     private TicTacToeBoard ticTacToeBoard;
     Button playAgainBtn, homeBtn;
     TextView playerTurn;
@@ -33,6 +36,7 @@ public class Level12Fragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -66,6 +70,7 @@ public class Level12Fragment extends Fragment implements View.OnClickListener{
             ticTacToeBoard.resetGame();
             ticTacToeBoard.invalidate();
         } else if (view.getId() == R.id.home_btn) {
+            dbHelper.addScore(User.getUID(),50);
             Fragment toHomeFragment = new HomeFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.flFragment, toHomeFragment).commit();

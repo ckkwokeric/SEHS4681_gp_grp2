@@ -25,15 +25,12 @@ public class MazeView_Mark extends View implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor accelerometer;
-
+    private Button nextLevelButton;
     private int cellX;
     private int cellY;
-
     private int winningX = 4;
     private int winningY = 0;
-
     private boolean gameWon = false;
-
     private int[][] maze = {
             {0, 0, 0, 1, 0},
             {0, 1, 0, 1, 0},
@@ -41,11 +38,8 @@ public class MazeView_Mark extends View implements SensorEventListener {
             {0, 1, 0, 1, 0},
             {0, 1, 0, 0, 0}
     };
-
     private Paint wallPaint;
     private Paint playerPaint;
-
-    Button nextLevelButton;
 
     public MazeView_Mark(Context context, AttributeSet attrs) {
         super(context, attrs);

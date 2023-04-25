@@ -19,13 +19,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 import java.util.Random;
 
 public class Level9Fragment extends Fragment {
 
+    private DBHelper dbHelper;
     ImageView iv_button, iv_arrow;
     TextView tv_points;
     ProgressBar progressBar;
@@ -51,7 +54,7 @@ public class Level9Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -100,6 +103,7 @@ public class Level9Fragment extends Fragment {
         btn_next_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dbHelper.addScore(User.getUID(),50);
                 // Add your logic to navigate to the next game
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

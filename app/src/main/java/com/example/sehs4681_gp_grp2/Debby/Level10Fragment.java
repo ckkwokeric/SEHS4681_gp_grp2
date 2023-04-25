@@ -14,12 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 
 public class Level10Fragment extends Fragment {
 
+    private DBHelper dbHelper;
     Button b_main, b_next_game;
     long startTime, endTime, currentTime, bestTime = 10000;
 
@@ -31,7 +34,7 @@ public class Level10Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -60,6 +63,7 @@ public class Level10Fragment extends Fragment {
                     b_next_game.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            dbHelper.addScore(User.getUID(),50);
                             // Add the code to navigate to the next game here
                             FragmentManager fragmentManager = getParentFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

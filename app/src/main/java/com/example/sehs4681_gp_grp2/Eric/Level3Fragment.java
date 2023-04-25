@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import java.util.Collections;
 
 public class Level3Fragment extends Fragment {
 
+    private DBHelper dbHelper;
     // Variable declaration - start
     final String MESSAGE_WITH_LETTERS_TRIED = "Letters tried: ";
     final String WINNING_MESSAGE = "You won!";
@@ -54,7 +57,7 @@ public class Level3Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         /* findViewById() is located at onCreateView() below */
         myListOfWords = new ArrayList<String>();
-
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -192,6 +195,7 @@ public class Level3Fragment extends Fragment {
                 // check if the game is won
                 if (!wordDisplayedString.contains("_")) {
                     txtTriesLeft.setText(WINNING_MESSAGE);
+                    dbHelper.addScore(User.getUID(),50);
                 }
             }
         } else { // otherwise, if the letter was not found Inside the word to be guessed

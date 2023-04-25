@@ -2,6 +2,7 @@ package com.example.sehs4681_gp_grp2.Harry;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,7 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 import java.util.Random;
@@ -23,6 +26,7 @@ import java.util.Random;
 
 public class Level2Fragment extends Fragment {
 
+    private DBHelper dbHelper;
     private View circle1;
     private View circle2;
     private Button winButton;
@@ -36,6 +40,12 @@ public class Level2Fragment extends Fragment {
 
     public Level2Fragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -102,6 +112,7 @@ public class Level2Fragment extends Fragment {
     private void goBack() {
         circle1Clicked = false;
         circle2Clicked = false;
+        dbHelper.addScore(User.getUID(),50);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         HomeFragment homeFragment = new HomeFragment();

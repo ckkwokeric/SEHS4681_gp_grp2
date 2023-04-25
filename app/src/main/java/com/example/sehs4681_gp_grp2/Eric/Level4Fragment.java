@@ -19,12 +19,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.Eric.L4GameClass.*;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 public class Level4Fragment extends Fragment implements OnCellClickListener{
 
-
+    private DBHelper dbHelper;
     public static final long TIMER_LENGTH = 999000L;    // 999 seconds in milliseconds
     public static final int BOMB_COUNT = 10;
     public static final int GRID_SIZE = 10;
@@ -44,6 +46,7 @@ public class Level4Fragment extends Fragment implements OnCellClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
     }
 
     @Override
@@ -138,6 +141,7 @@ public class Level4Fragment extends Fragment implements OnCellClickListener{
         if (mineSweeperGame.isGameWon()) {
             countDownTimer.cancel();
             Toast.makeText(getActivity().getApplicationContext(), "Game Won", Toast.LENGTH_SHORT).show();
+            dbHelper.addScore(User.getUID(),50);
             mineSweeperGame.getMineGrid().revealAllBombs();
         }
 
