@@ -19,10 +19,9 @@ import com.example.sehs4681_gp_grp2.Model.User;
 
 import java.io.Serializable;
 
-public class AccountFragment extends Fragment  implements Serializable {
+public class AccountFragment extends Fragment {
 
     private DBHelper dbHelper;
-
     private Button add_score_button;
     private TextView tv_userName, tv_userScore;
 
@@ -32,16 +31,6 @@ public class AccountFragment extends Fragment  implements Serializable {
         super.onCreate(savedInstanceState);
         dbHelper = new DBHelper(getContext());
     }
-
-//    public static AccountFragment newInstance(user) {
-//        AccountFragment fragment = new AccountFragment();
-//        Bundle args = new Bundle();
-//        args.putInt("user_uid", uid);
-//        args.putString("user_name", userName);
-//        args.putInt("user_score", userScore);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

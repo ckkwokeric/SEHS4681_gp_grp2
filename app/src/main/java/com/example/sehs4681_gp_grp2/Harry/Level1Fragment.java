@@ -20,6 +20,7 @@ import android.widget.Button;
 
 import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 
@@ -36,15 +37,6 @@ public class Level1Fragment extends Fragment implements MazeView.MazeViewListene
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dbHelper = new DBHelper(getContext());
-        userUid = getArguments().getInt("user_uid");
-    }
-
-    public static Level1Fragment newInstance(int uid) {
-        Bundle args = new Bundle();
-        Level1Fragment fragment = new Level1Fragment();
-        args.putInt("user_uid", uid);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     public Level1Fragment() {
@@ -68,7 +60,7 @@ public class Level1Fragment extends Fragment implements MazeView.MazeViewListene
         winButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbHelper.addScore(userUid,50);
+                dbHelper.addScore(User.getUID(),50);
                 // Go Back Home page
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

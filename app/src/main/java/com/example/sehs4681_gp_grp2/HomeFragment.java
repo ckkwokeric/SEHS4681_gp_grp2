@@ -40,14 +40,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         dbHelper = new DBHelper(getContext());
     }
 
-//    public static HomeFragment newInstance(int uid) {
-//        HomeFragment fragment = new HomeFragment();
-//        Bundle args = new Bundle();
-//        args.putInt("user_uid", uid);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
     public HomeFragment(){
         // require a empty public constructor
     }
@@ -94,7 +86,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.bt_lv1:
                 // Replace the current fragment with the new fragment
-                Level1Fragment level1Fragment = Level1Fragment.newInstance(userUid);
+                Level1Fragment level1Fragment = new Level1Fragment();
                 fragmentTransaction.replace(R.id.flFragment, level1Fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
