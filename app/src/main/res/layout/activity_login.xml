@@ -24,7 +24,7 @@
         android:id="@+id/et_username_in"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="UserName"
+        android:hint="Your user name"
         android:textSize="25dp"
         android:textColor="@color/black"
         android:background="@drawable/edittextbackground"
@@ -40,7 +40,8 @@
         android:textColor="@color/black"
         android:background="@drawable/edittextbackground"
         android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp"/>
+        android:paddingLeft="20dp"
+        android:inputType="textPassword"/>
 
 
     <Button

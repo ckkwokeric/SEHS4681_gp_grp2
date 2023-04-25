@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
+import com.example.sehs4681_gp_grp2.Model.User;
+
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -39,7 +40,8 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Boolean insertData(String username, String password){
+    // The createUser() is creating a user and insert corresponding info into db, then will immediately call the login function to login the user
+    public User createUser(String username, String password){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -47,35 +49,60 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, password);
 
         long result = db.insert(TABLE_NAME, null, values);
-        
-        if (result == -1){
-            return false;
-        }else {
-            return true;
-        }
+
+        if (result == -1)  return null;
+
+        return login(username,password);
     }
 
-    public Boolean checkusername(String username) {
+    public boolean checkUserExistsByName(String username) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from "+ TABLE_NAME +" where "+ COLUMN_USERNAME +" = ?", new String[] {username});
 
         if (cursor.getCount() > 0) {
+            cursor.close();
             return true;
         }else {
+            cursor.close();
             return false;
         }
+
     }
 
-    public int checkusernamepassword(String username, String password) {
+    //
+    public User login(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("Select * from " + TABLE_NAME + " where " + COLUMN_USERNAME + " = ? and " + COLUMN_PASSWORD + " = ?", new String[]{username, password});
 
         if (cursor.moveToFirst()) {
-            @SuppressLint("Range") int uid = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+
+            User user = new User(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USERNAME)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SCORE))
+            );
+
             cursor.close();
-            return uid;
-        } else {
-            return -1;
+            return user;
+        }else {
+            cursor.close();
+            return null;
+        }
+    }
+
+
+
+    @SuppressLint("Range")
+    public int fetchUserScore(String username) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select " + COLUMN_SCORE + " from "+ TABLE_NAME +" where "+ COLUMN_USERNAME +" = ?", new String[] {username});
+
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            return cursor.getInt(cursor.getColumnIndex(COLUMN_SCORE));
+        }else {
+            cursor.close();
+            return 0;
         }
     }
 

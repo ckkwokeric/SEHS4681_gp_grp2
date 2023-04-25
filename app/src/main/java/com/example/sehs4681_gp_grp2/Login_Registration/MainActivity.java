@@ -12,13 +12,14 @@ import android.widget.Toast;
 
 import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeActivity;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText username, password, repassword;
     Button signup, signin;
-    DBHelper DB;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         repassword = findViewById(R.id.et_repw);
         signin = findViewById(R.id.bt_signin);
         signup = findViewById(R.id.bt_signup);
-        DB = new DBHelper(this);
+        dbHelper = new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +44,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "All fields Required", Toast.LENGTH_SHORT).show();
                 } else {
                     if(pass.equals(repass)){
-                        Boolean checkuser = DB.checkusername(user);
-                        if (checkuser == false) {
-                            Boolean insert = DB.insertData(user, pass);
-                            if (insert == true){
-                                Toast.makeText(MainActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                        boolean isUserExists = dbHelper.checkUserExistsByName(user);
+                        if (!isUserExists) {
+                            // Inside the create user method, it will also call the login method. So that createUser() will return a user object
+                            User currentUserObj = dbHelper.createUser(user, pass);
+                            if (currentUserObj != null){
+                                Toast.makeText(MainActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra("UID", currentUserObj.getUID());
+                                intent.putExtra("userName", currentUserObj.getUserName());
+                                intent.putExtra("userScore", currentUserObj.getScore());
                                 startActivity(intent);
+                                finish();
                             } else {
                               Toast.makeText(MainActivity.this, "Registered Failed", Toast.LENGTH_SHORT).show();
                             }
