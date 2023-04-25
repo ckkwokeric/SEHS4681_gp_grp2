@@ -2,10 +2,12 @@ package com.example.sehs4681_gp_grp2;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,25 @@ import com.example.sehs4681_gp_grp2.Mark.Level5Fragment;
 import com.example.sehs4681_gp_grp2.Mark.Level6Fragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
+
+    private DBHelper dbHelper;
+    private int userUid;
+
+    private String userName;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
+    }
+
+//    public static HomeFragment newInstance(int uid) {
+//        HomeFragment fragment = new HomeFragment();
+//        Bundle args = new Bundle();
+//        args.putInt("user_uid", uid);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     public HomeFragment(){
         // require a empty public constructor
@@ -73,7 +94,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.bt_lv1:
                 // Replace the current fragment with the new fragment
-                Level1Fragment level1Fragment = new Level1Fragment();
+                Level1Fragment level1Fragment = Level1Fragment.newInstance(userUid);
                 fragmentTransaction.replace(R.id.flFragment, level1Fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

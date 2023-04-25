@@ -1,37 +1,39 @@
 package com.example.sehs4681_gp_grp2.Model;
 
-public class User {
-    private int UID;
-    private String userName;
-    private int score;
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static int UID;
+    private static String userName;
+    private static int score;
 
     public User(int UID, String userName, int score) {
-        this.UID = UID;
-        this.userName = userName;
-        this.score = score;
+        User.UID = UID;
+        User.userName = userName;
+        User.score = score;
     }
 
-    public int getUID() {
+    public static int getUID() {
         return UID;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public static void setUID(int UID) {
+        User.UID = UID;
     }
 
-    public String getUserName() {
+    public static String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public static void setUserName(String userName) {
+        User.userName = userName;
     }
 
-    public int getScore() {
+    public static int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public static void setScore(int score) {
+        User.score = score;
     }
 }

@@ -16,7 +16,9 @@ import com.example.sehs4681_gp_grp2.HomeActivity;
 import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
-public class LoginActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class LoginActivity extends AppCompatActivity implements Serializable {
 
     EditText username, password;
     Button signin, goback;
@@ -46,9 +48,6 @@ public class LoginActivity extends AppCompatActivity {
                     if (currentUserObj != null){
                         Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        intent.putExtra("UID", currentUserObj.getUID());
-                        intent.putExtra("userName", currentUserObj.getUserName());
-                        intent.putExtra("userScore", currentUserObj.getScore());
                         startActivity(intent);
                         finish();
                     } else {

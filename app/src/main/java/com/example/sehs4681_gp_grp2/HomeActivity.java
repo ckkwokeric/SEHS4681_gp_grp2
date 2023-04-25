@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.sehs4681_gp_grp2.Login_Registration.MainActivity;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -20,12 +21,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
 
     BottomNavigationView bottomNavigationView;
 
-    //        HomeFragment homeFragment = new HomeFragment();
-//        AccountFragment accountFragment = new AccountFragment();
-//        ScoreboardFragment scoreboardFragment = new ScoreboardFragment();
-    private int userUid;
-    private String userName;
-    private int userScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +31,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        Intent intent = getIntent();
-        userUid = intent.getIntExtra("UID", -1);
-        userName = intent.getStringExtra("userName");
-        userScore = intent.getIntExtra("userScore", -1);
 
     }
 
@@ -54,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationBarView
 
         switch (viewId) {
             case R.id.person:
-                fragment = AccountFragment.newInstance(userUid, userName, userScore);
+                fragment =  new AccountFragment();
                 break;
             case R.id.home:
                 fragment = new HomeFragment();

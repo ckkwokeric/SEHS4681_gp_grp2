@@ -146,12 +146,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    @SuppressLint("Range")
     public int getScore(int uid) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("Select " + COLUMN_SCORE + " from " + TABLE_NAME + " where " + COLUMN_ID + " = ?", new String[]{String.valueOf(uid)});
 
         if (cursor.moveToFirst()) {
-            @SuppressLint("Range") int score = cursor.getInt(cursor.getColumnIndex(COLUMN_SCORE));
+            int score = cursor.getInt(cursor.getColumnIndex(COLUMN_SCORE));
             cursor.close();
             return score;
         } else {

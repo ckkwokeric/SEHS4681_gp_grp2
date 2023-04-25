@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +15,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AccountFragment extends Fragment {
+import com.example.sehs4681_gp_grp2.Model.User;
+
+import java.io.Serializable;
+
+public class AccountFragment extends Fragment  implements Serializable {
 
     private DBHelper dbHelper;
-    private int userUid, userScore;
-    private String userName;
 
     private Button add_score_button;
     private TextView tv_userName, tv_userScore;
@@ -28,20 +31,17 @@ public class AccountFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dbHelper = new DBHelper(getContext());
-        userUid = getArguments().getInt("user_uid");
-        userName = getArguments().getString("user_name");
-        userScore = getArguments().getInt("user_score");
     }
 
-    public static AccountFragment newInstance(int uid, String userName, int userScore) {
-        AccountFragment fragment = new AccountFragment();
-        Bundle args = new Bundle();
-        args.putInt("user_uid", uid);
-        args.putString("user_name", userName);
-        args.putInt("user_score", userScore);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static AccountFragment newInstance(user) {
+//        AccountFragment fragment = new AccountFragment();
+//        Bundle args = new Bundle();
+//        args.putInt("user_uid", uid);
+//        args.putString("user_name", userName);
+//        args.putInt("user_score", userScore);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,20 +58,20 @@ public class AccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tv_userName.setText(userName);
-        tv_userScore.setText(String.format("Your current score: %d", userScore));
+        tv_userName.setText(User.getUserName());
+        updateScore();
 
         add_score_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbHelper.addScore(userUid,50);
+                dbHelper.addScore(User.getUID(),50);
                 updateScore();
             }
         });
     }
 
     private void updateScore() {
-        userScore = dbHelper.getScore(userUid); // Replace with the appropriate method to fetch the user's score from the database
-        tv_userScore.setText(String.format("Your current score: %d", userScore));
+        tv_userScore.setText(String.format("Your current score: %d", dbHelper.getScore(User.getUID())));
     }
+
 }

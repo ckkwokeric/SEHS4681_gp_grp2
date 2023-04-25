@@ -8,6 +8,7 @@ import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,18 +18,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.HomeFragment;
 import com.example.sehs4681_gp_grp2.R;
 
 
 public class Level1Fragment extends Fragment implements MazeView.MazeViewListener, SensorEventListener{
 
+    private DBHelper dbHelper;
     private SensorManager sensorManager;
     private Sensor accelerometer;
-
     private MazeView mazeView;
-
     private Button winButton;
+    private int userUid;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
+        userUid = getArguments().getInt("user_uid");
+    }
+
+    public static Level1Fragment newInstance(int uid) {
+        Bundle args = new Bundle();
+        Level1Fragment fragment = new Level1Fragment();
+        args.putInt("user_uid", uid);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     public Level1Fragment() {
         // Required empty public constructor
@@ -51,6 +68,7 @@ public class Level1Fragment extends Fragment implements MazeView.MazeViewListene
         winButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dbHelper.addScore(userUid,50);
                 // Go Back Home page
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -64,8 +82,7 @@ public class Level1Fragment extends Fragment implements MazeView.MazeViewListene
         return view;
     }
 
-
-        public void onWin() {
+    public void onWin() {
         winButton.setVisibility(View.VISIBLE);
     }
 
