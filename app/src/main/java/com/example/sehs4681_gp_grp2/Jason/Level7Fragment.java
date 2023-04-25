@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,17 +28,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sehs4681_gp_grp2.DBHelper;
 import com.example.sehs4681_gp_grp2.Harry.Level1Fragment;
 import com.example.sehs4681_gp_grp2.HomeFragment;
+import com.example.sehs4681_gp_grp2.Model.User;
 import com.example.sehs4681_gp_grp2.R;
 
 public class Level7Fragment extends Fragment implements SensorEventListener, View.OnClickListener{
 
+    private DBHelper dbHelper;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private float lastX, lastY, lastZ;
     private long lastUpdate;
-    private static final int SHAKE_THRESHOLD = 1000;
+    private static final int SHAKE_THRESHOLD = 600;
 
     private ImageView eggImageView;
     private TextView completionTextView;
@@ -45,6 +49,12 @@ public class Level7Fragment extends Fragment implements SensorEventListener, Vie
 
     public Level7Fragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(getContext());
     }
 
     @SuppressLint("MissingInflatedId")
@@ -66,7 +76,7 @@ public class Level7Fragment extends Fragment implements SensorEventListener, Vie
     @Override
     public void onResume() {
         super.onResume();
-        sensorManager.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -100,11 +110,6 @@ public class Level7Fragment extends Fragment implements SensorEventListener, Vie
         }
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-        // Not needed for this example
-    }
-
     private void onShakeDetected() {
         AnimationDrawable animationDrawable = (AnimationDrawable) getResources().getDrawable(R.drawable.egg_cracking_animation);
         FinishableAnimationDrawable finishableAnimationDrawable = new FinishableAnimationDrawable(animationDrawable, new FinishableAnimationDrawable.OnFinishListener() {
@@ -116,7 +121,7 @@ public class Level7Fragment extends Fragment implements SensorEventListener, Vie
                         eggImageView.setImageResource(R.drawable.egg_crack_2);
                     }
                 });
-                Toast.makeText(getActivity(), "Congratulations! You found the chicken!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Congratulations! You found the chicken!", Toast.LENGTH_SHORT).show();
                 btn.setVisibility(View.VISIBLE);
             }
         });
@@ -142,7 +147,13 @@ public class Level7Fragment extends Fragment implements SensorEventListener, Vie
     }
 
     @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Not needed for this example
+    }
+
+    @Override
     public void onClick(View view) {
+        dbHelper.addScore(User.getUID(),50);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         HomeFragment homeFragment = new HomeFragment();

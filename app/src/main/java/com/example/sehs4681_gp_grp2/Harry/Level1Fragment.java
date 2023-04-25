@@ -31,7 +31,6 @@ public class Level1Fragment extends Fragment implements MazeView.MazeViewListene
     private Sensor accelerometer;
     private MazeView mazeView;
     private Button winButton;
-    private int userUid;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

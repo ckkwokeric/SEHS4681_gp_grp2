@@ -14,7 +14,7 @@ import android.view.View;
 public class CustomGameView extends View {
     private CountDownTimer countDownTimer;
     private int timeLeft;
-    private static final int INITIAL_TIME_LIMIT = 60; // Time limit in seconds
+    private static final int INITIAL_TIME_LIMIT = 20; // Time limit in seconds
     private Paint circlePaint;
     private Paint targetPaint;
     private int circleRadius = 60;
@@ -55,7 +55,7 @@ public class CustomGameView extends View {
 
         // Initialize circle and target positions
         circlePositions[0] = new PointF(200, 200);
-        circlePositions[1] = new PointF(1000, 300);
+        circlePositions[1] = new PointF(1000, 400);
         targetPositions[0] = new PointF(200, 700);
         targetPositions[1] = new PointF(800, 1000);
     }
@@ -63,12 +63,19 @@ public class CustomGameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        int viewWidth = getWidth();
+        int viewHeight = getHeight();
+        float centerX = viewWidth / 2f;
+        float centerY = viewHeight / 2f;
 
         // Draw the timer
-        paint.setTextSize(50);
+        paint.setTextSize(60);
         paint.setColor(Color.BLACK);
-        canvas.drawText("Time left: " + timeLeft, 10, 60, paint);
+        //canvas.drawText("Time left: " + timeLeft, 10, 60, paint);
+        paint.setTextAlign(Paint.Align.CENTER);
 
+        float textVerticalOffset = (paint.descent() + paint.ascent()) / 2;
+        canvas.drawText("Time left: " + String.valueOf(timeLeft), centerX, 60 - textVerticalOffset, paint);
 
         // Draw circles
         for (PointF position : circlePositions) {
@@ -127,6 +134,10 @@ public class CustomGameView extends View {
         void onGameWon();
     }
 
+    public interface OnGameLostListener {
+        void onGameLost();
+    }
+
     public void startTimer() {
         gameWon = false;
         timeLeft = INITIAL_TIME_LIMIT;
@@ -140,7 +151,9 @@ public class CustomGameView extends View {
             @Override
             public void onFinish() {
                 if (!gameWon) {
-                    onGameLostListener.run();
+                    if (onGameLostListener != null) {
+                        onGameLostListener.onGameLost();
+                    }
                 }
             }
         }.start();
@@ -152,10 +165,10 @@ public class CustomGameView extends View {
         }
     }
 
-    private Runnable onGameLostListener;
+    private OnGameLostListener onGameLostListener;
 
-    public void setOnGameLostListener(Runnable onGameLostListener) {
-        this.onGameLostListener = onGameLostListener;
+    public void setOnGameLostListener(OnGameLostListener listener) {
+        this.onGameLostListener = listener;
     }
 
 

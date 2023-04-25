@@ -1,43 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Jason.Level7Fragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please find the chicken."
+        android:textSize="24sp"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
 
-        <TextView
-            android:id="@+id/question_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Please find the chicken."
-            android:textSize="24sp"
-            android:layout_marginTop="32dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true" />
+    <ImageView
+        android:id="@+id/eggImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/question_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/egg_whole" />
 
-        <ImageView
-            android:id="@+id/eggImageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@id/question_text"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/egg_whole" />
+    <ImageView
+        android:id="@+id/eggImageView2"
+        android:layout_width="143dp"
+        android:layout_height="133dp"
+        android:layout_below="@id/question_text"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="257dp"
+        android:layout_marginTop="210dp"
+        android:src="@drawable/chick" />
 
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="224dp"
-            android:visibility="gone"
-            android:text="Next Level" />
+    <ImageView
+        android:id="@+id/eggImageView3"
+        android:layout_width="221dp"
+        android:layout_height="223dp"
+        android:layout_below="@id/question_text"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="266dp"
+        android:src="@drawable/chicken" />
 
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/eggImageView4"
+        android:layout_width="104dp"
+        android:layout_height="131dp"
+        android:layout_below="@id/question_text"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="297dp"
+        android:layout_marginTop="368dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/egg_whole" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="224dp"
+        android:visibility="gone"
+        android:text="Next Level" />
+
+</RelativeLayout>
