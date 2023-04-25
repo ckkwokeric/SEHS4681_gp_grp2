@@ -65,7 +65,13 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dbHelper.addScore(userUid,50);
+                updateScore();
             }
         });
+    }
+
+    private void updateScore() {
+        userScore = dbHelper.getScore(userUid); // Replace with the appropriate method to fetch the user's score from the database
+        tv_userScore.setText(String.format("Your current score: %d", userScore));
     }
 }
